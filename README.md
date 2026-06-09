@@ -1,4 +1,4 @@
-# Synthèse de l'Arène des Algorithmes
+# Synthèse de l'Arène des Algorithmes - Jour 1 
 
 Cette note de synthèse présente les résultats et conclusions de mon arène de comparaison d'algorithmes d'apprentissage automatique (Machine Learning).
 
