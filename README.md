@@ -53,8 +53,6 @@ La variable est en réalité ordinale, elle suit une logique de progression (1 m
 Encoder customerID aurait créé une colonne par client (7043 colonnes).
 C’est inutile car chaque valeur est unique et cela rendrait le modèle inefficace.
 
-Tu peux simplifier ainsi :
-
 ## Phase 4
 
 ### Les colonnes numériques ont-elles des outliers ?
@@ -84,3 +82,17 @@ Une colonne de test contenant uniquement la valeur 50 a été utilisée. La fonc
 #### 3. Impact sur les clients churn
 
 Aucun outlier n'ayant été détecté, aucune ligne n'a été supprimée. La perte de clients ayant résilié (**churn**) est donc de **0 %**, bien en dessous du seuil d'alerte de **5 %**.
+
+## Phase 5
+
+### Question : Happy path : la heatmap s'affiche, les VIF sont calculés.
+
+Le calcul fonctionne bien. Les résultats montrent que `TotalCharges` (VIF de 8.07) et `tenure` (VIF de 6.32) ont un VIF supérieur à 5. Cela confirme que ces variables sont très corrélées entre elles (elles portent la même information).
+
+### Question : Edge case : deux colonnes parfaitement identiques (dupliquez-en une volontairement). Que vaut le VIF ?
+
+En dupliquant la colonne `TotalCharges`, le calcul du VIF explose et affiche **inf** (infini) pour les deux colonnes identiques. L'outil a même déclenché un avertissement mathématique (division par zéro), ce qui est le comportement normal quand une variable est redondante à 100%.
+
+### Question : Adversarial : si vous supprimez TotalCharges pour cause de VIF élevé, recalculez les VIF après suppression : le problème a-t-il disparu ?
+
+Oui, le problème a totalement disparu ! En supprimant `TotalCharges`, les VIF de `tenure` et `MonthlyCharges` sont retombés à **2.61** (donc bien en dessous du seuil critique de 5). Nous n'avons pas perdu d'information précieuse, car le total payé n'était finalement qu'une combinaison du prix mensuel multiplié par le temps passé. Le dataset est maintenant assaini.
