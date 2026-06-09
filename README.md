@@ -41,3 +41,14 @@ Cet algorithme est mathématiquement simple. Il s'entraîne en une fraction de s
 # Jour 2  
 ## Choix Phase 2 : Imputation par la médiane
 J'ai choisi d'imputer les trous plutôt que de supprimer les lignes pour ne pas perdre les informations contenues dans les autres colonnes. J'ai utilisé la médiane plutôt que la moyenne car elle résiste mieux aux valeurs extrêmes
+
+## Phase 3 
+
+### Question : Edge case : Contract a 3 modalités (Month-to-month, One year, Two year). Est-ce nominal ou ordinal ? Argumentez votre choix d'encodage dans le README.
+
+La variable est en réalité ordinale, elle suit une logique de progression (1 mois < 1 an < 2 ans). Un encodage ordinal aurait été plus adapté, mais le One-Hot Encoding fonctionne aussi.
+
+### Question : adversarial : que fait votre One-Hot si la colonne contient une catégorie ultra-rare présente sur 1 seul client ? Et le customerID , si vous l'encodiez par erreur en One-Hot, combien de colonnes ça créerait ? (Comptez. C'est la leçon de l'explosion de dimensions, en vrai.)
+
+Encoder customerID aurait créé une colonne par client (7043 colonnes).
+C’est inutile car chaque valeur est unique et cela rendrait le modèle inefficace.
