@@ -52,3 +52,35 @@ La variable est en réalité ordinale, elle suit une logique de progression (1 m
 
 Encoder customerID aurait créé une colonne par client (7043 colonnes).
 C’est inutile car chaque valeur est unique et cela rendrait le modèle inefficace.
+
+Tu peux simplifier ainsi :
+
+## Phase 4
+
+### Les colonnes numériques ont-elles des outliers ?
+
+La méthode IQR n'a détecté aucun outlier dans les colonnes **tenure**, **MonthlyCharges** et **TotalCharges**.
+
+**Stratégie choisie :**
+
+* **tenure** : conserver les valeurs.
+* **MonthlyCharges** : conserver les valeurs.
+* **TotalCharges** : conserver les valeurs.
+
+Comme aucun outlier n'a été trouvé, aucune correction n'est nécessaire. De plus, dans un contexte télécom, des montants élevés peuvent représenter un comportement client réel et utile pour le modèle.
+
+---
+
+### Vérifications réalisées
+
+#### 1. Comportement normal
+
+Le test sur **MonthlyCharges** a montré que les calculs des quartiles et des bornes IQR fonctionnent correctement.
+
+#### 2. Colonne sans outlier
+
+Une colonne de test contenant uniquement la valeur 50 a été utilisée. La fonction a correctement détecté **0 outlier** sans erreur.
+
+#### 3. Impact sur les clients churn
+
+Aucun outlier n'ayant été détecté, aucune ligne n'a été supprimée. La perte de clients ayant résilié (**churn**) est donc de **0 %**, bien en dessous du seuil d'alerte de **5 %**.
