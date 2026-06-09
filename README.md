@@ -37,3 +37,7 @@ Dans le domaine médical, toutes les erreurs n'ont pas la même gravité. Manque
 
 3. **Vitesse et légèreté**
 Cet algorithme est mathématiquement simple. Il s'entraîne en une fraction de seconde et consomme très peu d'énergie et de mémoire. Il peut être déployé facilement sur n'importe quel appareil sans matériel coûteux.
+
+# Jour 2  
+## Choix Phase 2 : Imputation par la médiane
+J'ai choisi d'imputer les trous plutôt que de supprimer les lignes pour ne pas perdre les informations contenues dans les autres colonnes. J'ai utilisé la médiane plutôt que la moyenne car elle résiste mieux aux valeurs extrêmes
