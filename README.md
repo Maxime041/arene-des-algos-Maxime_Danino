@@ -96,3 +96,30 @@ En dupliquant la colonne `TotalCharges`, le calcul du VIF explose et affiche **i
 ### Question : Adversarial : si vous supprimez TotalCharges pour cause de VIF élevé, recalculez les VIF après suppression : le problème a-t-il disparu ?
 
 Oui, le problème a totalement disparu ! En supprimant `TotalCharges`, les VIF de `tenure` et `MonthlyCharges` sont retombés à **2.61** (donc bien en dessous du seuil critique de 5). Nous n'avons pas perdu d'information précieuse, car le total payé n'était finalement qu'une combinaison du prix mensuel multiplié par le temps passé. Le dataset est maintenant assaini.
+
+
+## Phase 6 : Les variables qui prédisent le churn
+
+### Happy Path : Les deux méthodes sont-elles d'accord ?
+
+Oui. Les deux méthodes mettent en avant plusieurs variables importantes comme **tenure**, **TotalCharges**, **MonthlyCharges**, **Contract_Two year** et **PaymentMethod_Electronic check**.
+
+**Interprétation métier :**
+
+* Les clients récents ont davantage tendance à quitter l'entreprise.
+* Les contrats de longue durée réduisent le risque de churn.
+* Les montants facturés et le mode de paiement ont également un impact sur le départ des clients.
+
+---
+
+### Edge Case : Une colonne quasi constante finit-elle en bas du classement ?
+
+Oui. Une colonne qui contient presque toujours la même valeur n'apporte aucune information utile. Elle est donc classée parmi les variables les moins importantes et n'apparaît pas dans le Top 10.
+
+---
+
+### Adversarial : Forte importance mais faible corrélation
+
+Si une variable est importante pour le modèle Random Forest mais a une faible corrélation, cela signifie que son effet sur le churn est plus complexe qu'une simple relation linéaire.
+
+La corrélation mesure uniquement les relations directes, tandis que Random Forest peut détecter des interactions et des comportements plus complexes entre les variables.
