@@ -26,6 +26,16 @@ Ce document présente le plan de travail de l'après-midi pour le Jour 4, décri
 
 ## Phase 4 : Choisir la bonne métrique selon le coût métier
 
+### Réponses aux questions :
+- **Comparaison accuracy vs coût métier :**  
+  La meilleure accuracy ne garantit pas le plus petit coût. Par exemple, le modèle paresseux (toujours 0) a 99% d'accuracy mais laisse passer toutes les fraudes, ce qui engendre des pertes financières maximales.
+- **Gestion du cas limite (division par zéro) :**  
+  J'ai configuré `zero_division=0` dans les fonctions de scoring (`precision_score`, etc.) pour éviter les plantages si le modèle ne prédit aucune fraude.
+- **Démonstration chiffrée pour un décideur :**  
+  - **Modèle du collègue (99% d'accuracy)** : 100 fraudes ratées (FN) $\times$ 10 = **1000 €** de pertes.
+  - **Mon modèle pro (98.1% d'accuracy, 95% recall, 50% precision)** : 5 fraudes ratées $\times$ 10 + 95 fausses alertes (FP) $\times$ 1 = **145 €** de pertes.
+  - **Verdict** : Mon modèle est **6.9 fois plus économique** malgré une accuracy plus basse.
+
 ## Phase 5 : Sérialiser le modèle et le servir derrière une API
 
 ## Phase 6 : Déployer une WebApp de prédiction
