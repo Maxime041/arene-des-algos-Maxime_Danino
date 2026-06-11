@@ -18,6 +18,12 @@ Ce document présente le plan de travail de l'après-midi pour le Jour 4, décri
 
 ## Phase 3 : La validation croisée k-fold
 
+### Réponses aux questions :
+- **Pourquoi le Leave-One-Out (LOO) est-il lent ?**  
+  Parce que le modèle doit se ré-entraîner autant de fois qu'il y a de lignes dans le dataset (569 fois ici). J'ai mesuré environ 4.5 secondes d'exécution.
+- **KFold standard vs StratifiedKFold sur dataset déséquilibré (95/5) :**  
+  Avec `KFold` standard, la répartition est aléatoire : un fold peut ne contenir aucun exemple de la classe rare (classe 1), faussant la moyenne. `StratifiedKFold` préserve la proportion de 5% de classe 1 dans chaque fold, ce qui stabilise l'évaluation.
+
 ## Phase 4 : Choisir la bonne métrique selon le coût métier
 
 ## Phase 5 : Sérialiser le modèle et le servir derrière une API
