@@ -38,6 +38,14 @@ Ce document présente le plan de travail de l'après-midi pour le Jour 4, décri
 
 ## Phase 5 : Sérialiser le modèle et le servir derrière une API
 
+### Réponses aux questions :
+- **Validation du cas normal :**  
+  J'ai validé qu'un vecteur valide de 30 features renvoie un JSON contenant la prédiction (`1` pour bénigne, `0` pour maligne) et sa probabilité (ex: `{"prediction": 1, "proba": 0.97, "label": "benigne"}`).
+- **Gestion du cas limite (clé manquante ou mauvaise taille) :**  
+  Si la clé `features` est absente ou si le nombre de valeurs est différent de 30, mon API retourne une erreur HTTP 400 avec un message explicatif au lieu de planter.
+- **Gestion du cas adversarial (données invalides) :**  
+  Si un utilisateur envoie des données non numériques, une liste vide ou du texte, j'intercepte l'erreur via un bloc `try-except` et renvoie un code HTTP 400.
+
 ## Phase 6 : Déployer une WebApp de prédiction
 
 ## Phase 7 : L'arbitrage final (phase ouverte)
