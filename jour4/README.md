@@ -48,4 +48,12 @@ Ce document présente le plan de travail de l'après-midi pour le Jour 4, décri
 
 ## Phase 6 : Déployer une WebApp de prédiction
 
+### Réponses aux questions :
+- **Validation du cas normal :**  
+  J'ai validé que la saisie de caractéristiques standard affiche une prédiction claire avec la confiance calculée et un bandeau de succès ou d'erreur.
+- **Gestion du cas limite (champ vide ou valeur négative) :**  
+  Si un utilisateur laisse un champ vide, l'application le signale via un avertissement sans planter. J'ai aussi contraint les valeurs minimales à `0.0` sur les entrées numériques pour éviter des mesures physiques impossibles.
+- **Gestion du cas adversarial (valeurs hors plages d'entraînement) :**  
+  J'ai comparé les entrées utilisateur avec les minimums et maximums du dataset d'entraînement. Si une valeur est aberrante (ex: aire de 99999), l'application affiche une mise en garde concernant la fiabilité de la prédiction tout en l'affichant.
+
 ## Phase 7 : L'arbitrage final (phase ouverte)
